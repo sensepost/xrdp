@@ -14,6 +14,7 @@ xdotool
 ```
 sudo apt-get install xdotool
 wget http://old-releases.ubuntu.com/ubuntu/pool/universe/x/xwatchwin/xwatchwin_1.1.1-2_amd64.deb && sudo dpkg -i xwatchwin_1.1.1-2_amd64.deb && sudo apt-get install -f
+git clone git@github.com:sensepost/xrdp.git && cd xrdp
 ```
 
 ## Usage:
