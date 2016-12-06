@@ -24,17 +24,17 @@ python xrdp.py 10.2.10.190:0
 ```
 
 ## Functionality:
-spr		= toggle on + type character in entry + press enter to send
+spr		= toggle on + type character in entry + press enter key to send
 
-ctrl 		= toggle on + type character in entry + press enter to send
+ctrl		= toggle on + type character in entry + press enter key to send
 
-alt 		= toggle on + type character in entry + press enter to send
+alt		= toggle on + type character in entry + press enter key to send
 
-Enter 		= press button to send enter key
+Enter		= press button to send enter key (alternatively, press enter key in empty text field)
 
-Backspace 	= press button to send backspace key
+Backspace	= press button to send backspace key
 
-R-Shell 	= type ip:port + press button to automatically open terminal and run reverse shell then minimize window
+R-Shell		= type ip:port + press button to automatically open terminal and run reverse shell then minimize window
 
 ## Authors:
 Darryn@SensePost.com
