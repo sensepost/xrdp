@@ -239,8 +239,6 @@ xrdp.py <host>:<dp>
 
 requirements:
 --------------
- xorg
- openbox
  xwininfo
  xwatchwin
  xdotool
