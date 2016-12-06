@@ -37,4 +37,5 @@ R-Shell 	= type ip:port + press button to automatically open terminal and run re
 
 ## Authors:
 Darryn@SensePost.com
+
 Thomas@SensePost.com
