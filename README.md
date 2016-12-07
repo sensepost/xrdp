@@ -3,6 +3,8 @@ This is a rudimentary remote desktop tool for the X11 protocol exploiting unauth
 
 Our approach is to automate the process of using the default X toolset into an easy to use tool for exploiting unauthenticated X11 access. Our tool provides a streamlined method for connecting to an X server in order to send commands and receive output hijacking the remote host. The provided user interface is designed to resemble a remote desktop connection apart from the added user input fields. Before using the tool, a vulnerable host will need to be found using available scanners or using the Nmap script we developed to find vulnerable hosts with currently active displays that can be hijacked.
 
+To help in the scanning process, check out the custom nmap script [here](https://github.com/sensepost/x11-active-displays).
+
 ## Requirements:
 xwininfo
 
