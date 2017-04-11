@@ -21,7 +21,7 @@ pygtk.require('2.0')
 
 class xwin:
 	host = ''
-	xww = None
+	xww = True
 	keyspace = {' ':'space', '!':'exclam', '"':'quotedbl', '#':'numbersign', '$':'dollar', '%':'percent', '&':'ampersand', '\'':'quoteright', '(':'parenleft', ')':'parenright', '[':'bracketleft', '*':'asterisk', '\\':'backslash', '+':'plus', ']':'bracketright', ',':'comma', '^':'asciicircum', '-':'minus', '_':'underscore', '.':'period', '`':'quoteleft', '/':'slash', ':':'colon', ';':'semicolon', '<':'less', '=':'equal', '>':'greater', '?':'question', '@':'at', '{':'braceleft', '|':'bar', '}':'braceright', '~':'asciitilde'}
 	spr_state = False
 	ctrl_state = False
@@ -130,7 +130,7 @@ class xwin:
 		self.cr.fill()
 
 	def destroy(self, widget, data=None):
-		if not xww:
+		if self.xww:
 			os.system("kill {}".format(self.xww.pid + 1))
 		gtk.main_quit()
 
@@ -225,6 +225,7 @@ def main():
 		print("------------------------")
 		print("Example:")
 		print("xrdp.py 10.0.0.10:0")
+		print("xrdp.py 10.0.0.10:0 --no-disp")
 		print("")
 		quit()
 	elif ((sys.argv[1] == "-h") or (sys.argv[1] == "--help")):
@@ -237,6 +238,7 @@ this is a rudimentary remote desktop tool for the X11 protocol
 xrdp.py <host>:<dp>
 --------------
  Example: xrdp.py 10.0.0.10:0
+          xrdp.py 10.0.0.10:0 --no-disp
 
 requirements:
 --------------
@@ -246,6 +248,7 @@ requirements:
 
 usage:
 --------------
+ --no-disp  = only load the keyboard input fields (do not render display)
  spr 		= toggle on/off + type character in entry + press enter to send
  ctrl 		= toggle on/off + type character in entry + press enter to send
  alt 		= toggle on/off + type character in entry + press enter to send
@@ -279,6 +282,8 @@ Written by
 ''')
 		quit()
 
+	disp = True
+
 	try:
 		inp1 = sys.argv[1]
 		inp2 = sys.argv[2]
@@ -291,8 +296,6 @@ Written by
 			disp = False
 	except IndexError:
 		host = sys.argv[1]
-
-	disp = True
 
 	valid = re.match(r"^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d{1,2}$", host)
 	if valid:
@@ -322,7 +325,7 @@ Written by
 		winheight = winheight.group(0).split(' ')
 		winheight = int(winheight[1])
 
-		if not disp:
+		if disp:
 			xwatchwin = "xwatchwin {} -w {} > /dev/null".format(host, winid)
 			xww = subprocess.Popen(xwatchwin, shell=True)
 			time.sleep(2)
