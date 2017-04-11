@@ -291,6 +291,8 @@ Written by
 	except IndexError:
 		host = sys.argv[1]
 
+	disp = True
+
 	valid = re.match(r"^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d{1,2}$", host)
 	if valid:
 		if not valid_ip(host.split(':')[0]):
