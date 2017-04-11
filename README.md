@@ -23,9 +23,11 @@ git clone git@github.com:sensepost/xrdp.git && cd xrdp
 ```
 python xrdp.py <IP>:<DP>
 python xrdp.py 10.2.10.190:0
+python xrdp.py 10.2.10.190:0 --no-disp
 ```
 
 ## Functionality:
+--no-disp       = only load the keyboard input fields (do not render display)
 spr		= toggle on + type character in entry + press enter key to send
 
 ctrl		= toggle on + type character in entry + press enter key to send
