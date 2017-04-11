@@ -219,7 +219,7 @@ def main():
 		X11 Remote Desktop
 	"""
 
-	if (len(sys.argv) != 2):
+	if (len(sys.argv) == 1):
 		print("xrdp.py <host>:<dp>")
 		print("------------------------")
 		print("Example:")
@@ -278,7 +278,18 @@ Written by
 ''')
 		quit()
 
-	host = sys.argv[1]
+	try:
+		inp1 = sys.argv[1]
+		inp2 = sys.argv[2]
+
+		if (inp1 == "--no-disp"):
+			host = inp2
+			disp = False
+		elif (inp2 == "--no-disp"):
+			host = inp1
+			disp = False
+	except IndexError:
+		host = sys.argv[1]
 
 	valid = re.match(r"^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d{1,2}$", host)
 	if valid:
@@ -308,17 +319,23 @@ Written by
 		winheight = winheight.group(0).split(' ')
 		winheight = int(winheight[1])
 
-		xwatchwin = "xwatchwin {} -w {} > /dev/null".format(host, winid)
-		xww = subprocess.Popen(xwatchwin, shell=True)
-		time.sleep(2)
+		if not disp:
+			xwatchwin = "xwatchwin {} -w {} > /dev/null".format(host, winid)
+			xww = subprocess.Popen(xwatchwin, shell=True)
+			time.sleep(2)
 
-		xwinmove = "xdotool getactivewindow windowmove 100 100"
-		os.system(xwinmove)
+			xwinmove = "xdotool getactivewindow windowmove 100 100"
+			os.system(xwinmove)
 
-		overlay = xwin(winwidth, winheight)
-		overlay.host = host
-		overlay.xww = xww
-		overlay.main()
+			overlay = xwin(winwidth, winheight)
+			overlay.host = host
+			overlay.xww = xww
+			overlay.main()
+		else:
+			overlay = xwin(480, 1)
+			overlay.host = host
+			overlay.xww = xww
+			overlay.main()
 	except KeyboardInterrupt:
 		quit()
 
