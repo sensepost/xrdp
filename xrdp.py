@@ -130,7 +130,8 @@ class xwin:
 		self.cr.fill()
 
 	def destroy(self, widget, data=None):
-		os.system("kill {}".format(self.xww.pid + 1))
+		if not xww:
+			os.system("kill {}".format(self.xww.pid + 1))
 		gtk.main_quit()
 
 	def delete_event(self, widget, event, data=None):
@@ -336,7 +337,7 @@ Written by
 		else:
 			overlay = xwin(480, 1)
 			overlay.host = host
-			overlay.xww = xww
+			overlay.xww = False
 			overlay.main()
 	except KeyboardInterrupt:
 		quit()
